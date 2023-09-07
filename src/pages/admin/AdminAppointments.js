@@ -598,15 +598,15 @@ function AdminAppointments() {
                             <Card
                                 bordered={false}
                                 className="criclebox tablespace mb-24"
-                                title="Appointments Table"
-                                extra={
+                                // title="Appointments Table"
+                                /*extra={
                                     <>
                                         <Radio.Group onChange={onChange} defaultValue="a">
                                             <Radio.Button value="a">All</Radio.Button>
                                             <Radio.Button value="b">ONLINE</Radio.Button>
                                         </Radio.Group>
                                     </>
-                                }
+                                }*/
                             >
                                 <div>
                                 {/*<div className="table-responsive">*/}

@@ -14,7 +14,10 @@ class AuthService {
     }
 
     logout() {
-        localStorage.removeItem("user");
+        localStorage.removeItem("ACCESS_TOKEN");
+        localStorage.removeItem("ROLE_LIST");
+        localStorage.removeItem("CHECK_IS_ADMIN");
+        localStorage.removeItem("USER_EMAIL");
     }
 
     register(username, email, password) {

@@ -1,117 +1,33 @@
 import React from "react";
-import {Avatar, Button, Card, Col, List, message, Modal, Row, Table} from 'antd';
-import face2 from "../../../assets/images/face-2.jpg";
-import face3 from "../../../assets/images/face-3.jpg";
-import face from "../../../assets/images/face-1.jpg";
-import face4 from "../../../assets/images/face-4.jpg";
-import face5 from "../../../assets/images/face-5.jpeg";
-import face6 from "../../../assets/images/face-6.jpeg";
-import Title from "antd/es/skeleton/Title";
+import {Avatar, Button, Card, Col, List, message, Modal, Row, Space, Table, Tag} from 'antd';
 import consultantService from "../../../service/ConsultantService";
 import {EditOutlined, FileDoneOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
+import moment from "moment";
 
 
 export class ConsultantTableComp extends React.Component {
-
-    /* columns: any = [
-         {
-             title: "No",
-             dataIndex: "rowId",
-             key: "rowId",
-             width: 40,
-             align: 'center',
-         },
-         {
-             title: "Customer Name",
-             dataIndex: "fullName",
-             width: 150,
-             sorter: false,
-             key: 'userName',
-         },
-         {
-             title: "Identity Type",
-             dataIndex: "identityTypeDesc",
-             width: 95,
-             sorter: false,
-             key: '2'
-         },
-         {
-             title: "ID Number",
-             dataIndex: "idNo",
-             width: 95,
-             sorter: false,
-             key: '2'
-         },
-         {
-             title: "Input User",
-             dataIndex: "createdBy",
-             width: 150,
-             sorter: false,
-             key: '4'
-         },
-         {
-             title: "Input Date/Time",
-             dataIndex: "createdDate",
-             width: 150,
-             sorter: false,
-             key: 'createdDate',
-             render: (key: any, rec: any) => {
-                 if (moment(rec.createdDate).isValid())
-                     return moment(rec.createdDate).format("YYYY-MM-DD HH:mm:ss")
-                 else
-                     return "N/A";
-             }
-         }, {
-             title: "Name",
-             dataIndex: "fullName",
-             align: "left",
-             width: 150,
-             sorter: false,
-         }, {
-             title: <div style={{marginLeft: '20px'}}>Action</div>,
-             key: "action",
-             fixed: "right",
-             dataIndex: "action",
-             width: 160,
-             render: (text: any, record: any) => (
-                 <List size={"small"} style={{marginLeft: '12px'}}>
-                     <li>
-                         <RenderOnRole roles={['REMOVE_USER_BLACKLIST']}>
-                             <Button style={{border: 'none', height: 20}} size={"small"}
-                                     icon={<FileDoneOutlined style={{fontSize: 15}}/>}
-                                     onClick={() => {
-                                         this.props.onClickRemoveBlacklist(record.id);
-                                     }}
-                             >Remove from Blacklist
-                             </Button>
-                         </RenderOnRole>
-                     </li>
-                 </List>
-             ),
-         }
-     ]*/
 
     columns: any = [
         {
             title: "Name",
             dataIndex: "firstName",
             key: "firstName",
-            width: "25%",
+            width: 150,
             render: (text: any, record: any) => (
                 <>
-                    <Avatar.Group>
-                        <Avatar
-                            className="shape-avatar"
-                            shape="square"
-                            size={40}
-                            src={face2}
-                        ></Avatar>
-                        <div className="avatar-info">
-                            <h6>{record.firstName + " " + record.lastName}</h6>
-                            <p>{record.email}</p>
-                        </div>
-                    </Avatar.Group>{" "}
+                    {/*<Avatar.Group>*/}
+                    {/*    <Avatar*/}
+                    {/*        className="shape-avatar"*/}
+                    {/*        shape="square"*/}
+                    {/*        size={40}*/}
+                    {/*        src={face2}*/}
+                    {/*    ></Avatar>*/}
+                    <div className="avatar-info">
+                        <h6>{record.firstName + " " + record.lastName}</h6>
+                        <p>{record.email}</p>
+                    </div>
+                    {/*</Avatar.Group>{" "}*/}
                 </>
             )
         },
@@ -119,66 +35,89 @@ export class ConsultantTableComp extends React.Component {
             title: "Job Type",
             dataIndex: "jobType",
             key: "jobType",
-            render: (text: any, record: any) => (
+            width: 100,
+            /*render: (text: any, record: any) => (
                 <>
                     <div className="author-info">
                         <h6>{record.jobType}</h6>
-                        {/*<p>Organization</p>*/}
+                        {/!*<p>Organization</p>*!/}
                     </div>
                 </>
-            )
+            )*/
         },
         {
             title: "Country",
             dataIndex: "country",
-            // width: 95,
+            width: 100,
             key: 'country'
         },
         {
             title: "ID Number",
             dataIndex: "idNo",
-            // width: 95,
+            width: 100,
             key: 'idNo'
         },
         {
             title: "Contact Number",
             dataIndex: "contactNo",
-            // width: 95,
+            width: 100,
             key: 'contactNo'
         },
-        /*{
-            title: "STATUS",
-            key: "status",
-            dataIndex: "status",
-            render: (text: any, record: any) => (
-                <>
-                    <Button type="primary" className="tag-primary">
-                        ONLINE
-                    </Button>
-                </>
-            )
-        },*/
-        /*{
-            title: "EMPLOYED",
-            key: "employed",
-            dataIndex: "employed",
-            render: (text: any, record: any) => (
-                <>
-                    <div className="ant-employed">
-                        <span>23/04/18</span>
-                        <a href="src/pages#pablo">Edit</a>
-                    </div>
-                </>
-            )
-        },*/
         {
-            title: <div style={{marginLeft: '20px'}}>Action</div>,
+            title: "Record Status",
+            key: "recordStatus",
+            dataIndex: "recordStatus",
+            align: 'center',
+            width: 100,
+            render(text: string) {
+                if (text == 'ACTIVE') {
+                    return {
+                        children: <Space size="small"><Tag color='blue'>{text}</Tag></Space>
+                    }
+                }else if (text == 'INACTIVE') {
+                    return {
+                        children: <Space size="small"><Tag color='red'>{text}</Tag></Space>
+                    }
+                }else {
+                    return {
+                        children: <Space size="small"><Tag color='orange'>{text}</Tag></Space>
+                    }
+                }
+            }
+        },
+        {
+            title: "Created Date/Time",
+            dataIndex: "createdDate",
+            width: 150,
+            key: 'createdDate',
+            render: (key: any, rec: any) => {
+                if (moment(rec.createdDate).isValid())
+                    return moment(rec.createdDate).format("YYYY-MM-DD HH:mm:ss")
+                else
+                    return "N/A";
+            }
+        },
+        {
+            title: "Modified Date/Time",
+            dataIndex: "modifiedDate",
+            width: 150,
+            key: 'modifiedDate',
+            render: (key: any, rec: any) => {
+                if (moment(rec.modifiedDate).isValid())
+                    return moment(rec.modifiedDate).format("YYYY-MM-DD HH:mm:ss")
+                else
+                    return "N/A";
+            }
+        },
+        {
+            title: "Action",
             key: "action",
             fixed: "right",
             dataIndex: "action",
-            // width: 100,
+            align: 'center',
+            width: 100,
             render: (text: any, record: any) => (
-                <List size={"small"} style={{marginLeft: '8px'}}>
+                /*<List size={"small"} style={{marginLeft: '8px'}}>
                     <li>
                         <Link to={{
                             pathname: `/admin/consultant-form/${record.consultantId}`,
@@ -198,7 +137,30 @@ export class ConsultantTableComp extends React.Component {
                         >Delete
                         </Button>
                     </li>
-                </List>
+                </List>*/
+
+                <div
+                    style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContents: 'center'}}>
+                    <Link to={{
+                        pathname: `/admin/consultant-form/${record.consultantId}`,
+                        state: record,
+                        // hash: "edit"
+                    }}>
+                        <Button style={{border: 'none', height: 30}} size={"small"}
+                                icon={<EditOutlined style={{fontSize: 15}}/>}
+                        >Edit
+                        </Button>
+                    </Link>
+                    <Button style={{border: 'none', height: 30}} size={"small"}
+                            icon={<FileDoneOutlined style={{fontSize: 15}}/>}
+                            onClick={() => {
+                                this.onClickDeleteConsultant(record.consultantId);
+                            }}
+                    >Delete
+                    </Button>
+                </div>
+
+
             )
         }
 
@@ -554,7 +516,7 @@ export class ConsultantTableComp extends React.Component {
                                             pagination={false}
                                             className="ant-border-space"
                                             loading={this.state.loading}
-                                            scroll={{x: 1200, y: 300}}
+                                            scroll={{x: 1800, y: 500}}
                                         />
                                     </div>
                                 </Card>

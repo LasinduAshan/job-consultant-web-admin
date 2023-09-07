@@ -9,7 +9,7 @@ import {
     Input,
     List,
     message,
-    Modal,
+    Modal, Radio,
     Row,
     Select,
     Space,
@@ -35,112 +35,40 @@ const {Option, OptGroup} = Select;
 
 export class AppointmentPendingTableComp extends React.Component {
 
-    /* columns: any = [
-         {
-             title: "No",
-             dataIndex: "rowId",
-             key: "rowId",
-             width: 40,
-             align: 'center',
-         },
-         {
-             title: "Customer Name",
-             dataIndex: "fullName",
-             width: 150,
-             sorter: false,
-             key: 'userName',
-         },
-         {
-             title: "Identity Type",
-             dataIndex: "identityTypeDesc",
-             width: 95,
-             sorter: false,
-             key: '2'
-         },
-         {
-             title: "ID Number",
-             dataIndex: "idNo",
-             width: 95,
-             sorter: false,
-             key: '2'
-         },
-         {
-             title: "Input User",
-             dataIndex: "createdBy",
-             width: 150,
-             sorter: false,
-             key: '4'
-         },
-         {
-             title: "Input Date/Time",
-             dataIndex: "createdDate",
-             width: 150,
-             sorter: false,
-             key: 'createdDate',
-             render: (key: any, rec: any) => {
-                 if (moment(rec.createdDate).isValid())
-                     return moment(rec.createdDate).format("YYYY-MM-DD HH:mm:ss")
-                 else
-                     return "N/A";
-             }
-         }, {
-             title: "Name",
-             dataIndex: "fullName",
-             align: "left",
-             width: 150,
-             sorter: false,
-         }, {
-             title: <div style={{marginLeft: '20px'}}>Action</div>,
-             key: "action",
-             fixed: "right",
-             dataIndex: "action",
-             width: 160,
-             render: (text: any, record: any) => (
-                 <List size={"small"} style={{marginLeft: '12px'}}>
-                     <li>
-                         <RenderOnRole roles={['REMOVE_USER_BLACKLIST']}>
-                             <Button style={{border: 'none', height: 20}} size={"small"}
-                                     icon={<FileDoneOutlined style={{fontSize: 15}}/>}
-                                     onClick={() => {
-                                         this.props.onClickRemoveBlacklist(record.id);
-                                     }}
-                             >Remove from Blacklist
-                             </Button>
-                         </RenderOnRole>
-                     </li>
-                 </List>
-             ),
-         }
-     ]*/
-
     columns: any = [
         {
             title: "Consultant Name",
             dataIndex: "consultantName",
             key: "consultantName",
-            width: 20,
-            /*  render: (text: any, record: any) => (
-                  <>
-                      <Avatar.Group>
-                          <Avatar
-                              className="shape-avatar"
-                              shape="square"
-                              size={40}
-                              src={face2}
-                          ></Avatar>
-                          <div className="avatar-info">
-                              <h6>{record.consultantName}</h6>
-                              <p>{record.email}</p>
-                          </div>
-                      </Avatar.Group>{" "}
-                  </>
-              )*/
+            width: 150,
+            render: (text: any, record: any) => (
+                <>
+                    <div className="avatar-info">
+                        <h6>{record.consultantName}</h6>
+                        <p>{record.consultantEmail}</p>
+                    </div>
+                </>
+            )
+        },
+        {
+            title: "JobSeeker Name",
+            dataIndex: "jobSeekerName",
+            key: "jobSeekerName",
+            width: 150,
+            render: (text: any, record: any) => (
+                <>
+                    <div className="avatar-info">
+                        <h6>{record.jobSeekerName}</h6>
+                        <p>{record.jobSeekerEmail}</p>
+                    </div>
+                </>
+            )
         },
         {
             title: "Job Type",
             dataIndex: "jobSeekerJobType",
             key: "jobSeekerJobType",
-            width: 15,
+            width: 100,
             /*render: (text: any, record: any) => (
                 <>
                     <div className="author-info">
@@ -154,7 +82,7 @@ export class AppointmentPendingTableComp extends React.Component {
             title: "Country",
             dataIndex: "jobSeekerCountry",
             key: "jobSeekerCountry",
-            width: 15,
+            width: 100,
             /*render: (text: any, record: any) => (
                 <>
                     <div className="author-info">
@@ -166,10 +94,10 @@ export class AppointmentPendingTableComp extends React.Component {
         },
 
         {
-            title: "STATUS",
+            title: "Status",
             key: "appointmentStatus",
             dataIndex: "appointmentStatus",
-            width: 15,
+            width: 100,
             render: (text: any, record: any) => {
                 if (text === 'SCHEDULED') {
                     return {
@@ -179,6 +107,10 @@ export class AppointmentPendingTableComp extends React.Component {
                 } else if (text === 'PENDING') {
                     return {
                         children: <Space size="small"><Tag color='orange'>{text}</Tag></Space>
+                    }
+                } else if (text === 'COMPLETED') {
+                    return {
+                        children: <Space size="small"><Tag color='blue'>{text}</Tag></Space>
                     }
                 } else {
                     return {
@@ -192,320 +124,80 @@ export class AppointmentPendingTableComp extends React.Component {
             }
         },
         {
-            title: "Date",
+            title: "Appointment Date",
             dataIndex: "date",
-            width: 15,
+            width: 100,
             key: 'date'
         },
         {
-            title: "Time",
+            title: "Appointment Time",
             dataIndex: "time",
-            width: 15,
-            key: 'time'
+            width: 100,
+            key: 'time',
+            render: (text: any, rec: any) => {
+                const parsedTime = moment(text, "HH:mm");
+                const formattedTime = parsedTime.format("h:mm A");
+
+                if (null !== text && text.length > 0)
+                    return text+ " ("+formattedTime+")"
+                else
+                    return text;
+            }
         },
-        /*{
-            title: "EMPLOYED",
-            key: "employed",
-            dataIndex: "employed",
-            render: (text: any, record: any) => (
-                <>
-                    <div className="ant-employed">
-                        <span>23/04/18</span>
-                        <a href="src/pages#pablo">Edit</a>
-                    </div>
-                </>
-            )
-        },*/
         {
-            title: <div style={{marginLeft: '20px'}}>Action</div>,
+            title: "Created Date/Time",
+            dataIndex: "createdDate",
+            width: 100,
+            key: 'createdDate',
+            render: (key: any, rec: any) => {
+                if (moment(rec.createdDate).isValid())
+                    return moment(rec.createdDate).format("YYYY-MM-DD HH:mm:ss")
+                else
+                    return "N/A";
+            }
+        },
+        {
+            title: "Modified Date/Time",
+            dataIndex: "modifiedDate",
+            width: 100,
+            key: 'modifiedDate',
+            render: (key: any, rec: any) => {
+                if (moment(rec.modifiedDate).isValid())
+                    return moment(rec.modifiedDate).format("YYYY-MM-DD HH:mm:ss")
+                else
+                    return "N/A";
+            }
+        },
+        {
+            title: 'Action',
             key: "action",
             fixed: "right",
             dataIndex: "action",
-            width: 15,
+            align: 'center',
+            width: 100,
             render: (text: any, record: any) => (
-                <List size={"small"} style={{marginLeft: '8px'}}>
-                    <li>
-
-                        <Button style={{border: 'none', height: 20}} size={"small"}
-                                icon={<EditOutlined style={{fontSize: 15}}/>}
-                                onClick={() => {
-                                    this.onClickAppointmentSchedule(record.appointmentId, record.consultantId, false);
-                                }}
-                        >Approve
-                        </Button>
-                        <Button style={{border: 'none', height: 20}} size={"small"}
-                                icon={<FileDoneOutlined style={{fontSize: 15}}/>}
-                                onClick={() => {
-                                    this.onClickAppointmentSchedule(record.appointmentId, record.consultantId, true);
-                                }}
-                        >Reject
-                        </Button>
-                    </li>
-                </List>
+                <div hidden={"PENDING" !== record.appointmentStatus} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContents: 'center' }}>
+                    <Button style={{border: 'none', height: 30, marginBottom: 10}} size={"small"}
+                            icon={<EditOutlined style={{fontSize: 15}}/>}
+                            onClick={() => {
+                                this.onClickAppointmentSchedule(record.appointmentId, record.consultantId, false);
+                            }}
+                    >Approve
+                    </Button>
+                    <Button style={{border: 'none', height: 30}} size={"small"}
+                            icon={<FileDoneOutlined style={{fontSize: 15}}/>}
+                            onClick={() => {
+                                this.onClickAppointmentSchedule(record.appointmentId, record.consultantId, true);
+                            }}
+                    >Reject
+                    </Button>
+                </div>
             )
         }
 
         ,
     ]
 
-
-    /*data: any = [
-        {
-            key: "1",
-            name: (
-                <>
-                    <Avatar.Group>
-                        <Avatar
-                            className="shape-avatar"
-                            shape="square"
-                            size={40}
-                            src={face2}
-                        ></Avatar>
-                        <div className="avatar-info">
-                            <Title level={5}>Michael John</Title>
-                            <p>michael@mail.com</p>
-                        </div>
-                    </Avatar.Group>{" "}
-                </>
-            ),
-            function: (
-                <>
-                    <div className="author-info">
-                        <Title level={5}>Manager</Title>
-                        <p>Organization</p>
-                    </div>
-                </>
-            ),
-
-            status: (
-                <>
-                    <Button type="primary" className="tag-primary">
-                        ONLINE
-                    </Button>
-                </>
-            ),
-            employed: (
-                <>
-                    <div className="ant-employed">
-                        <span>23/04/18</span>
-                        <a href="src/pages#pablo">Edit</a>
-                    </div>
-                </>
-            ),
-        },
-
-        {
-            key: "2",
-            name: (
-                <>
-                    <Avatar.Group>
-                        <Avatar
-                            className="shape-avatar"
-                            shape="square"
-                            size={40}
-                            src={face3}
-                        ></Avatar>
-                        <div className="avatar-info">
-                            <Title level={5}>Alexa Liras</Title>
-                            <p>alexa@mail.com</p>
-                        </div>
-                    </Avatar.Group>{" "}
-                </>
-            ),
-            function: (
-                <>
-                    <div className="author-info">
-                        <Title level={5}>Programator</Title>
-                        <p>Developer</p>
-                    </div>
-                </>
-            ),
-
-            status: (
-                <>
-                    <Button className="tag-badge">ONLINE</Button>
-                </>
-            ),
-            employed: (
-                <>
-                    <div className="ant-employed">
-                        <span>23/12/20</span>
-                        <a href="src/pages#pablo">Edit</a>
-                    </div>
-                </>
-            ),
-        },
-
-        {
-            key: "3",
-            name: (
-                <>
-                    <Avatar.Group>
-                        <Avatar
-                            className="shape-avatar"
-                            shape="square"
-                            size={40}
-                            src={face}
-                        ></Avatar>
-                        <div className="avatar-info">
-                            <Title level={5}>Laure Perrier</Title>
-                            <p>laure@mail.com</p>
-                        </div>
-                    </Avatar.Group>{" "}
-                </>
-            ),
-            function: (
-                <>
-                    <div className="author-info">
-                        <Title level={5}>Executive</Title>
-                        <p>Projects</p>
-                    </div>
-                </>
-            ),
-
-            status: (
-                <>
-                    <Button type="primary" className="tag-primary">
-                        ONLINE
-                    </Button>
-                </>
-            ),
-            employed: (
-                <>
-                    <div className="ant-employed">
-                        <span>03/04/21</span>
-                        <a href="src/pages#pablo">Edit</a>
-                    </div>
-                </>
-            ),
-        },
-        {
-            key: "4",
-            name: (
-                <>
-                    <Avatar.Group>
-                        <Avatar
-                            className="shape-avatar"
-                            shape="square"
-                            size={40}
-                            src={face4}
-                        ></Avatar>
-                        <div className="avatar-info">
-                            <Title level={5}>Miriam Eric</Title>
-                            <p>miriam@mail.com</p>
-                        </div>
-                    </Avatar.Group>{" "}
-                </>
-            ),
-            function: (
-                <>
-                    <div className="author-info">
-                        <Title level={5}>Marketing</Title>
-                        <p>Organization</p>
-                    </div>
-                </>
-            ),
-
-            status: (
-                <>
-                    <Button type="primary" className="tag-primary">
-                        ONLINE
-                    </Button>
-                </>
-            ),
-            employed: (
-                <>
-                    <div className="ant-employed">
-                        <span>03/04/21</span>
-                        <a href="src/pages#pablo">Edit</a>
-                    </div>
-                </>
-            ),
-        },
-        {
-            key: "5",
-            name: (
-                <>
-                    <Avatar.Group>
-                        <Avatar
-                            className="shape-avatar"
-                            shape="square"
-                            size={40}
-                            src={face5}
-                        ></Avatar>
-                        <div className="avatar-info">
-                            <Title level={5}>Richard Gran</Title>
-                            <p>richard@mail.com</p>
-                        </div>
-                    </Avatar.Group>{" "}
-                </>
-            ),
-            function: (
-                <>
-                    <div className="author-info">
-                        <Title level={5}>Manager</Title>
-                        <p>Organization</p>
-                    </div>
-                </>
-            ),
-
-            status: (
-                <>
-                    <Button className="tag-badge">ONLINE</Button>
-                </>
-            ),
-            employed: (
-                <>
-                    <div className="ant-employed">
-                        <span>23/03/20</span>
-                        <a href="src/pages#pablo">Edit</a>
-                    </div>
-                </>
-            ),
-        },
-
-        {
-            key: "6",
-            name: (
-                <>
-                    <Avatar.Group>
-                        <Avatar
-                            className="shape-avatar"
-                            shape="square"
-                            size={40}
-                            src={face6}
-                        ></Avatar>
-                        <div className="avatar-info">
-                            <Title level={5}>John Levi</Title>
-                            <p>john@mail.com</p>
-                        </div>
-                    </Avatar.Group>{" "}
-                </>
-            ),
-            function: (
-                <>
-                    <div className="author-info">
-                        <Title level={5}>Tester</Title>
-                        <p>Developer</p>
-                    </div>
-                </>
-            ),
-
-            status: (
-                <>
-                    <Button className="tag-badge">ONLINE</Button>
-                </>
-            ),
-            employed: (
-                <>
-                    <div className="ant-employed">
-                        <span>14/04/17</span>
-                        <a href="src/pages#pablo">Edit</a>
-                    </div>
-                </>
-            ),
-        },
-    ];*/
 
     constructor(props) {
         super(props);
@@ -521,13 +213,13 @@ export class AppointmentPendingTableComp extends React.Component {
     }
 
     componentDidMount() {
-        this.fetch();
+        this.fetch("PENDING");
     }
 
-    fetch = () => {
+    fetch = (appointmentStatus) => {
         this.setState({loading: true});
         let email = localStorage.getItem("USER_EMAIL");
-        return appointmentService.getAllAppointmentDetailListForConsultant(email, "PENDING")
+        return appointmentService.getAllAppointmentDetailListForConsultant(email, appointmentStatus)
             .then(res => {
                 let data: Array<any> = res.data;
                 console.log("data", data);
@@ -616,7 +308,7 @@ export class AppointmentPendingTableComp extends React.Component {
                         this.setState({loading: false, isVisibleModal: false});
                         if (200 === res.status || 201 === res.status) {
                             message.success("Successfully Rejected").then();
-                            this.fetch();
+                            this.fetch("PENDING");
                         }
 
                     }, (error: any) => {
@@ -636,7 +328,7 @@ export class AppointmentPendingTableComp extends React.Component {
                         this.setState({loading: false, isVisibleModal: false});
                         if (200 === res.status || 201 === res.status) {
                             message.success("Successfully Scheduled").then();
-                            this.fetch();
+                            this.fetch("PENDING");
                             // const {history, location, match} = this.props;
                             // history.push(`/consultant/appointments`);
                         }
@@ -663,6 +355,11 @@ export class AppointmentPendingTableComp extends React.Component {
 
     }
 
+    onChangeFilter = (value) => {
+     console.log("filter value, ", value)
+        this.fetch(value);
+    }
+
 
     render() {
         return (
@@ -671,7 +368,17 @@ export class AppointmentPendingTableComp extends React.Component {
                     <Col span={24}>
                         <Row gutter={8} style={{marginTop: "12px"}}>
                             <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-                                <Card>
+                                <Card title="My Other Appointments"
+                                      extra={
+                                          <>
+                                              <Radio.Group onChange={(value) => {this.onChangeFilter(value.target.value)}} defaultValue="PENDING">
+                                                  <Radio.Button value="PENDING">Pending</Radio.Button>
+                                                  <Radio.Button value="REJECTED">Rejected</Radio.Button>
+                                                  <Radio.Button value="COMPLETED">Completed</Radio.Button>
+                                              </Radio.Group>
+                                          </>
+                                      }
+                                >
 
                                     <div style={{marginTop: "10px"}}>
                                         <Table
@@ -680,7 +387,7 @@ export class AppointmentPendingTableComp extends React.Component {
                                             pagination={false}
                                             className="ant-border-space"
                                             loading={this.state.loading}
-                                            scroll={{x: 1200, y: 300}}
+                                            scroll={{x: 1800, y: 500}}
                                         />
                                     </div>
                                 </Card>

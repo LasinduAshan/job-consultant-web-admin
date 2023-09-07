@@ -243,14 +243,14 @@ export function SignIn() {
                         </Row>
                     </Content>
                     <Footer>
-                        <Menu mode="horizontal">
+                        {/*<Menu mode="horizontal">
                             <Menu.Item>Company</Menu.Item>
                             <Menu.Item>About Us</Menu.Item>
                             <Menu.Item>Teams</Menu.Item>
                             <Menu.Item>Products</Menu.Item>
                             <Menu.Item>Blogs</Menu.Item>
                             <Menu.Item>Pricing</Menu.Item>
-                        </Menu>
+                        </Menu>*/}
                         <Menu mode="horizontal" className="menu-nav-social">
                             <Menu.Item>
                                 <Link to="#">{<DribbbleOutlined/>}</Link>

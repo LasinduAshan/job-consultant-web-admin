@@ -203,7 +203,7 @@ function Profile() {
                         <Row justify="space-between" align="middle" gutter={[24, 0]}>
                             <Col span={24} md={12} className="col-info">
                                 <Avatar.Group>
-                                    <Avatar size={74} shape="square" src={profilavatar}/>
+                                    {/*<Avatar size={74} shape="square" src={profilavatar}/>*/}
 
                                     <div className="avatar-info">
                                         <h4 className="font-semibold m-0">{profileData.firstName+ " "+ profileData.lastName}</h4>
@@ -220,11 +220,11 @@ function Profile() {
                                     justifyContent: "flex-end",
                                 }}
                             >
-                                <Radio.Group defaultValue="a">
+                                {/*<Radio.Group defaultValue="a">
                                     <Radio.Button value="a">OVERVIEW</Radio.Button>
                                     <Radio.Button value="b">TEAMS</Radio.Button>
                                     <Radio.Button value="c">PROJECTS</Radio.Button>
-                                </Radio.Group>
+                                </Radio.Group>*/}
                             </Col>
                         </Row>
                     }
@@ -277,20 +277,20 @@ function Profile() {
                     <Col span={24} md={8} className="mb-24" style={{alignItems: "center"}}>
                         <Card
                             bordered={false}
-                            title={<h6 className="font-semibold m-0">Profile Information</h6>}
+                            title={<h6 className="font-semibold m-0">My Details</h6>}
                             className="header-solid h-full card-profile-information"
-                            extra={<Button type="link">{pencil}</Button>}
+                            // extra={<Button type="link">{pencil}</Button>}
                             bodyStyle={{paddingTop: 0, paddingBottom: 16}}
                         >
-                            <p className="text-dark">
+                           {/* <p className="text-dark">
                                 {" "}
                                 Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer
                                 is no. If two equally difficult paths, choose the one more painful
                                 in the short term (pain avoidance is creating an illusion of
                                 equality).{" "}
-                            </p>
+                            </p>*/}
                             <hr className="my-25"/>
-                            <Descriptions title="My details">
+                            <Descriptions title="">
                                 <Descriptions.Item label="Full Name" span={3}>
                                     {profileData.firstName+ " "+ profileData.lastName}
                                 </Descriptions.Item>

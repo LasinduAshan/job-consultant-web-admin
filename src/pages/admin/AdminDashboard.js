@@ -369,7 +369,7 @@ function AdminDashboard() {
         <>
             <Spin spinning={loading} size="large" tip="Loading...">
                 <div className="layout-content">
-                   {/* <Row className="rowgap-vbox" gutter={[24, 0]}>
+                    {/* <Row className="rowgap-vbox" gutter={[24, 0]}>
                         {count.map((c, index) => (
                             <Col
                                 key={index}
@@ -420,7 +420,8 @@ function AdminDashboard() {
                                                 </Title>
                                             </Col>
                                             <Col xs={6}>
-                                                <div className="icon-box">{c.label === "Total Consultants" ? profile :cart}</div>
+                                                <div
+                                                    className="icon-box">{c.label === "Total Consultants" ? profile : cart}</div>
                                             </Col>
                                         </Row>
                                     </div>

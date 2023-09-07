@@ -16,18 +16,8 @@ class AppointmentService {
             , {headers: authHeader()});
     }
 
-   /* updateConsultant(consultantDto) {
-        return axios.put(API_URL + "/update",
-            consultantDto
-            , {headers: authHeader()});
-    }*/
-
-   /* getConsultantById(consultantId) {
-        return axios.get(API_URL + `/view/${consultantId}`, {headers: authHeader()});
-    }*/
-
-    getAllAppointmentsForAdmin() {
-        return axios.get(API_URL + `/view-all-admin`, {headers: authHeader()});
+    getAllAppointmentsForAdmin(appointmentStatus) {
+        return axios.get(API_URL + `/view-all-admin/${appointmentStatus}`, {headers: authHeader()});
     }
 
     getAllAppointmentDetailListForConsultant(email, appointmentStatus) {
@@ -40,6 +30,10 @@ class AppointmentService {
 
     getDashboardDetailsForAdmin() {
         return axios.get(API_URL + `/view-admin-dashboard`, {headers: authHeader()});
+    }
+
+    completeAppointment(appointmentId) {
+        return axios.get(API_URL + `/complete-appointment/${appointmentId}`, {headers: authHeader()});
     }
 }
 

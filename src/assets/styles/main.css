@@ -1523,6 +1523,8 @@ ul.ant-menu.ant-menu-root.ant-menu-inline.ant-menu-light.left-nav li svg path {
   padding-right: 24px;
   padding-top: 14px;
   padding-bottom: 14px;
+  background: #096dd9;
+  color: #ffffff;
 }
 .percent-progress .ant-progress-bg {
   height: 3px !important;

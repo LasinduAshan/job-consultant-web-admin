@@ -600,14 +600,14 @@ function ConsultantAppointments() {
                                 bordered={false}
                                 className="criclebox tablespace mb-24"
                                 title="My Scheduled Appointments"
-                                extra={
+                                /*extra={
                                     <>
                                         <Radio.Group onChange={onChange} defaultValue="a">
                                             <Radio.Button value="a">All</Radio.Button>
                                             <Radio.Button value="b">ONLINE</Radio.Button>
                                         </Radio.Group>
                                     </>
-                                }
+                                }*/
                             >
                                 <div>
                                 {/*<div className="table-responsive">*/}
@@ -625,7 +625,7 @@ function ConsultantAppointments() {
                             <Card
                                 bordered={false}
                                 className="criclebox tablespace mb-24"
-                                title="My Pending Appointments"
+                                /*title="My Other Appointments"
                                 extra={
                                     <>
                                         <Radio.Group onChange={onChange} defaultValue="all">
@@ -634,7 +634,7 @@ function ConsultantAppointments() {
                                             <Radio.Button value="store">STORES</Radio.Button>
                                         </Radio.Group>
                                     </>
-                                }
+                                }*/
                             >
                                 <div>
                                 {/*<div className="table-responsive">*/}

@@ -19,12 +19,13 @@ import {
     SearchOutlined,
     StarOutlined,
     TwitterOutlined,
-    FacebookFilled,
+    FacebookFilled, EditOutlined, PoweroffOutlined,
 } from "@ant-design/icons";
 
 import {NavLink, Link} from "react-router-dom";
 import styled from "styled-components";
 import avtar from "../../assets/images/team-2.jpg";
+import authService from "../../service/auth/AuthService";
 
 const ButtonContainer = styled.div`
   .ant-btn-primary {
@@ -273,7 +274,7 @@ function Header({
                             <NavLink to="/">Pages</NavLink>
                         </Breadcrumb.Item>
                         <Breadcrumb.Item style={{textTransform: "capitalize"}}>
-                            {name.replace("/", "")}
+                            {name.replace("/", " ")}
                         </Breadcrumb.Item>
                     </Breadcrumb>
                     <div className="ant-page-header-heading">
@@ -281,12 +282,12 @@ function Header({
                 className="ant-page-header-heading-title"
                 style={{textTransform: "capitalize"}}
             >
-              {subName.replace("/", "")}
+              {subName.replace("/", " ")}
             </span>
                     </div>
                 </Col>
                 <Col span={24} md={18} className="header-control">
-                    <Badge size="small" count={4}>
+                    {/*<Badge size="small" count={4}>
                         <Dropdown overlay={menu} trigger={["click"]}>
                             <a
                                 href="#pablo"
@@ -296,10 +297,10 @@ function Header({
                                 {bell}
                             </a>
                         </Dropdown>
-                    </Badge>
-                    <Button type="link" onClick={showDrawer}>
+                    </Badge>*/}
+                    {/*<Button type="link" onClick={showDrawer}>
                         {logsetting}
-                    </Button>
+                    </Button>*/}
                     <Button
                         type="link"
                         className="sidebar-toggler"
@@ -414,15 +415,22 @@ function Header({
               </div>
             </div>
           </Drawer>*/}
-                    <Link to="/sign-in" className="btn-sign-in">
-                        {profile}
-                        <span>Sign in</span>
+                    <Link to="/login"
+                          className="btn-sign-in"
+                          onClick={() => {
+                              authService.logout();
+                          }}
+
+                    >
+                        {/*{profile}*/}
+                        <PoweroffOutlined style={{fontSize: 15}}/>
+                        <span>Log out</span>
                     </Link>
-                    <Input
+                    {/*<Input
                         className="header-search"
                         placeholder="Type here..."
                         prefix={<SearchOutlined/>}
-                    />
+                    />*/}
                 </Col>
             </Row>
         </>
