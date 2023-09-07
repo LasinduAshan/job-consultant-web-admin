@@ -1,5 +1,5 @@
 import React from "react";
-import {Avatar, Button, Card, Col, List, message, Radio, Row, Space, Table, Tag} from 'antd';
+import {Card, Col, message, Radio, Row, Space, Table, Tag} from 'antd';
 import appointmentService from "../../../service/AppointmentService";
 import moment from "moment/moment";
 
@@ -216,7 +216,6 @@ export class AppointmentTableComp extends React.Component {
                 }, () => {
                     console.log("state list", this.state.data);
                 });
-
             }
         }, (error: any) => {
             this.setState({loading: false});

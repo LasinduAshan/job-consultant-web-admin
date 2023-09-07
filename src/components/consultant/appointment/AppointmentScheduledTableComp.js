@@ -1,6 +1,6 @@
 import React from "react";
-import {Avatar, Button, Card, Col, List, message, Modal, Row, Space, Table, Tag} from 'antd';
-import {EditOutlined, FileDoneOutlined} from "@ant-design/icons";
+import {Button, Card, Col, message, Modal, Row, Space, Table, Tag} from 'antd';
+import {FileDoneOutlined} from "@ant-design/icons";
 import appointmentService from "../../../service/AppointmentService";
 import moment from "moment";
 

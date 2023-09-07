@@ -1,13 +1,8 @@
 import React, {Component} from 'react';
-import {Button, Card, Col, Form, Input, InputNumber, message, Modal, Row, Select, Space, Spin, Switch} from 'antd';
-import AvailabilityDto from "../../../dto/AvailabilityDto";
+import {Button, Card, Col, Form, Input, message, Modal, Row, Select, Space, Spin, Switch} from 'antd';
 import {CheckOutlined, CloseOutlined} from "@ant-design/icons";
-import {FormInstance} from "antd";
 import {Link} from "react-router-dom";
 import consultantService from "../../../service/ConsultantService";
-import {withRouter} from 'react-router-dom';
-import availabilityDto from "../../../dto/AvailabilityDto";
-import authService from "../../../service/auth/AuthService";
 
 const {Option, OptGroup} = Select;
 
@@ -217,7 +212,7 @@ class ConsultantDetailForm extends Component {
 
 
     componentDidMount() {
-        const {history, location, match} = this.props;
+        const {match} = this.props;
         let id: number = parseInt(match.params.consultantId);
         console.log("user iddddd", id);
 
@@ -297,7 +292,7 @@ class ConsultantDetailForm extends Component {
                     if (200 === res.status || 201 === res.status) {
                         message.success("Successfully Saved").then();
                         this.formRef.current.resetFields();
-                        const {history, location, match} = this.props;
+                        const {history} = this.props;
                         history.push("/admin/consultants")
                     }
 
@@ -335,7 +330,7 @@ class ConsultantDetailForm extends Component {
                     if (200 === res.status || 201 === res.status) {
                         message.success("Successfully Updated").then();
                         this.formRef.current.resetFields();
-                        const {history, location, match} = this.props;
+                        const {history} = this.props;
                         history.push(`/admin/consultants`);
                     }
 
@@ -364,7 +359,7 @@ class ConsultantDetailForm extends Component {
 
     validateNic = (rule: any, value: any, callback: any) => {
         const idNo = this.formRef.current.getFieldValue('idNo');
-        if (idNo == undefined || idNo == "") {
+        if (idNo === undefined || idNo === "") {
             callback("Please enter ID Number!");
         } else if (!/^([0-9]{9}[x|X|v|V]|[0-9]{12})$/.test(idNo)) {
             callback("Invalid NIC format");
@@ -378,7 +373,7 @@ class ConsultantDetailForm extends Component {
         const contactNoRegex =
             /^(?:0|94|\+94|0094)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|91)(0|2|3|4|5|7|9)|7(0|1|2|4|5|6|7|8)\d)\d{6}$/;
 
-        if (value == undefined || value == "") {
+        if (value === undefined || value === "") {
             callback("Please enter contact Number!");
         } else if (!contactNoRegex.test(value)) {
             callback("Invalid contact number");
@@ -390,7 +385,7 @@ class ConsultantDetailForm extends Component {
     validateEmail = (rule: any, value: any, callback: any) => {
         const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-        if (value == undefined || value == "") {
+        if (value === undefined || value === "") {
             callback("Please enter email address!");
         } else if (!emailRegex.test(value)) {
             callback("Invalid email address");

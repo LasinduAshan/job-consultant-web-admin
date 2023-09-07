@@ -1,10 +1,10 @@
 import {  Route, Redirect } from 'react-router-dom';
-import {useContext} from "react";
-import {AuthContext} from "../context/AuthContext";
+// import {useContext} from "react";
+// import {AuthContext} from "../context/AuthContext";
 
 export function PrivateRoute( {component:Component, privateRoles, ...rest} ) {
 
-    const {roles} = useContext(AuthContext);
+    // const {roles} = useContext(AuthContext);
 
     const isAuthorized = (authRoles) => {
 

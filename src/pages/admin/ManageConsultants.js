@@ -2,17 +2,10 @@ import {
     Row,
     Col,
     Card,
-    Statistic,
     Button,
-    List,
-    Descriptions,
-    Avatar, Spin, Radio, Table, Upload,
+    Spin,
 } from "antd";
 
-import {PlusOutlined, ExclamationOutlined, ToTopOutlined} from "@ant-design/icons";
-import mastercard from "../../assets/images/mastercard-logo.png";
-import paypal from "../../assets/images/paypal-logo-2.png";
-import visa from "../../assets/images/visa-logo.png";
 import {Link} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {ConsultantTableComp} from "../../components/admin/consultant/ConsultantTableComp";
@@ -21,7 +14,7 @@ function ManageConsultants() {
 
     const [loading, setLoading] = useState(true);
 
-    const data = [
+ /*   const data = [
         {
             title: "March, 01, 2021",
             description: "#MS-415646",
@@ -47,9 +40,9 @@ function ManageConsultants() {
             description: "#AR-803481",
             amount: "$700",
         },
-    ];
+    ];*/
 
-    const wifi = [
+    /*const wifi = [
         <svg
             xmlns="http://www.w3.org/2000/svg"
             width="25"
@@ -310,7 +303,7 @@ function ManageConsultants() {
             textclass: "text-warning",
             amountcolor: "text-warning-b",
         },
-    ];
+    ];*/
 
 
     useEffect(() => {

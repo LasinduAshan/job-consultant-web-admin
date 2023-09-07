@@ -1,6 +1,5 @@
 import axios from 'axios';
 import authHeader from "./auth/AuthHeader";
-import ConsultantDto from "../dto/ConsultantDto";
 
 const API_URL = 'http://localhost:8080/api/v1/consultant-service';
 

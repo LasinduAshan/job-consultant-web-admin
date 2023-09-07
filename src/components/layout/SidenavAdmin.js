@@ -1,4 +1,4 @@
-import {Menu, Button} from "antd";
+import {Menu} from "antd";
 import {NavLink, useLocation} from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 
@@ -73,7 +73,7 @@ function SidenavAdmin({color}) {
         </svg>,
     ];
 
-    const rtl = [
+    /*const rtl = [
         <svg
             width="20"
             height="20"
@@ -145,7 +145,7 @@ function SidenavAdmin({color}) {
                 fill={color}
             />
         </svg>,
-    ];
+    ];*/
 
     return (
         <>

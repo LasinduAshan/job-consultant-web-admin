@@ -1,4 +1,4 @@
-import {Menu, Button} from "antd";
+import {Menu} from "antd";
 import {NavLink, useLocation} from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 
@@ -51,7 +51,7 @@ function SidenavConsultant({color}) {
         </svg>,
     ];
 
-    const billing = [
+  /*  const billing = [
         <svg
             width="20"
             height="20"
@@ -89,7 +89,7 @@ function SidenavConsultant({color}) {
                 fill={color}
             ></path>
         </svg>,
-    ];
+    ];*/
 
     const profile = [
         <svg
@@ -109,7 +109,7 @@ function SidenavConsultant({color}) {
         </svg>,
     ];
 
-    const signin = [
+   /* const signin = [
         <svg
             width="20"
             height="20"
@@ -145,7 +145,7 @@ function SidenavConsultant({color}) {
                 fill={color}
             />
         </svg>,
-    ];
+    ];*/
 
     return (
         <>

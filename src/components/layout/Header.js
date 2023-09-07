@@ -1,33 +1,22 @@
-import {useState, useEffect} from "react";
+import {useEffect} from "react";
 
 import {
     Row,
     Col,
     Breadcrumb,
-    Badge,
-    Dropdown,
     Button,
-    List,
-    Avatar,
-    Input,
-    Drawer,
-    Typography,
-    Switch,
 } from "antd";
 
 import {
-    SearchOutlined,
-    StarOutlined,
-    TwitterOutlined,
-    FacebookFilled, EditOutlined, PoweroffOutlined,
+    PoweroffOutlined,
 } from "@ant-design/icons";
 
 import {NavLink, Link} from "react-router-dom";
-import styled from "styled-components";
-import avtar from "../../assets/images/team-2.jpg";
+// import styled from "styled-components";
+// import avtar from "../../assets/images/team-2.jpg";
 import authService from "../../service/auth/AuthService";
 
-const ButtonContainer = styled.div`
+/*const ButtonContainer = styled.div`
   .ant-btn-primary {
     background-color: #1890ff;
   }
@@ -50,9 +39,9 @@ const ButtonContainer = styled.div`
   .ant-switch-active {
     background-color: #1890ff;
   }
-`;
+`;*/
 
-const bell = [
+/*const bell = [
     <svg
         width="20"
         height="20"
@@ -70,9 +59,9 @@ const bell = [
             fill="#111827"
         ></path>
     </svg>,
-];
+];*/
 
-const wifi = [
+/*const wifi = [
     <svg
         width="20"
         height="20"
@@ -136,9 +125,9 @@ const clockicon = [
             fill="#111827"
         ></path>
     </svg>,
-];
+];*/
 
-const data = [
+/*const data = [
     {
         title: "New message from Sophie",
         description: <>{clockicon} 2 days ago</>,
@@ -156,8 +145,8 @@ const data = [
         description: <>{clockicon} 2 days ago</>,
         avatar: <Avatar shape="square">{credit}</Avatar>,
     },
-];
-
+];*/
+/*
 const menu = (
     <List
         min-width="100%"
@@ -174,9 +163,9 @@ const menu = (
             </List.Item>
         )}
     />
-);
+);*/
 
-const logsetting = [
+/*const logsetting = [
     <svg
         width="20"
         height="20"
@@ -210,7 +199,7 @@ const profile = [
             fill="#111827"
         ></path>
     </svg>,
-];
+];*/
 
 const toggler = [
     <svg
@@ -225,7 +214,7 @@ const toggler = [
     </svg>,
 ];
 
-const setting = [
+/*const setting = [
     <svg
         width="20"
         height="20"
@@ -241,26 +230,26 @@ const setting = [
             fill="#111827"
         ></path>
     </svg>,
-];
+];*/
 
 function Header({
-                    placement,
+                    // placement,
                     name,
                     subName,
                     onPress,
-                    handleSidenavColor,
-                    handleSidenavType,
-                    handleFixedNavbar,
+                    // handleSidenavColor,
+                    // handleSidenavType,
+                    // handleFixedNavbar,
                 }) {
-    const {Title, Text} = Typography;
+    // const {Title, Text} = Typography;
 
-    const [visible, setVisible] = useState(false);
-    const [sidenavType, setSidenavType] = useState("transparent");
+    // const [visible, setVisible] = useState(false);
+    // const [sidenavType, setSidenavType] = useState("transparent");
 
     useEffect(() => window.scrollTo(0, 0));
 
-    const showDrawer = () => setVisible(true);
-    const hideDrawer = () => setVisible(false);
+    // const showDrawer = () => setVisible(true);
+    // const hideDrawer = () => setVisible(false);
 
     return (
         <>

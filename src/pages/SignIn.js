@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Link, Redirect} from "react-router-dom";
 import {
     Layout,
@@ -9,7 +9,7 @@ import {
     Typography,
     Form,
     Input,
-    Switch, message,
+    message,
 } from "antd";
 import signinbg from "../assets/images/sign-in-img.svg";
 import {
@@ -18,18 +18,18 @@ import {
     InstagramOutlined,
     GithubOutlined,
 } from "@ant-design/icons";
-import authService, {Login} from "../service/auth/AuthService";
-import {AuthContext} from "../context/AuthContext";
+import authService from "../service/auth/AuthService";
+// import {AuthContext} from "../context/AuthContext";
 
 // import {Login} from "../service/auth/AuthService.js";
 
-function onChange(checked) {
+/*function onChange(checked) {
     console.log(`switch to ${checked}`);
-}
+}*/
 
 const {Title} = Typography;
-const {Header, Footer, Content} = Layout;
-const template = [
+const {Footer, Content} = Layout;
+/*const template = [
     <svg
         data-v-4ebdc598=""
         width="20"
@@ -108,7 +108,7 @@ const signin = [
             d="M12.25,14H1.75A1.752,1.752,0,0,1,0,12.25V3.5A1.752,1.752,0,0,1,1.75,1.75h.876V.875a.875.875,0,0,1,1.75,0V1.75h5.25V.875a.875.875,0,0,1,1.75,0V1.75h.875A1.752,1.752,0,0,1,14,3.5v8.75A1.752,1.752,0,0,1,12.25,14ZM3.5,4.375a.875.875,0,0,0,0,1.75h7a.875.875,0,0,0,0-1.75Z"
         />
     </svg>,
-];
+];*/
 
 export function SignIn() {
 

@@ -1,13 +1,11 @@
 import React from "react";
 import {
-    Avatar,
     Button,
     Card,
     Col,
     DatePicker,
     Form,
     Input,
-    List,
     message,
     Modal, Radio,
     Row,
@@ -17,16 +15,16 @@ import {
     Table,
     Tag
 } from 'antd';
-import face2 from "../../../assets/images/face-2.jpg";
-import face3 from "../../../assets/images/face-3.jpg";
-import face from "../../../assets/images/face-1.jpg";
-import face4 from "../../../assets/images/face-4.jpg";
-import face5 from "../../../assets/images/face-5.jpeg";
-import face6 from "../../../assets/images/face-6.jpeg";
-import Title from "antd/es/skeleton/Title";
+// import face2 from "../../../assets/images/face-2.jpg";
+// import face3 from "../../../assets/images/face-3.jpg";
+// import face from "../../../assets/images/face-1.jpg";
+// import face4 from "../../../assets/images/face-4.jpg";
+// import face5 from "../../../assets/images/face-5.jpeg";
+// import face6 from "../../../assets/images/face-6.jpeg";
+// import Title from "antd/es/skeleton/Title";
 import consultantService from "../../../service/ConsultantService";
 import {CloseOutlined, EditOutlined, FileDoneOutlined, SaveOutlined} from "@ant-design/icons";
-import {Link} from "react-router-dom";
+// import {Link} from "react-router-dom";
 import appointmentService from "../../../service/AppointmentService";
 import TextArea from "antd/es/input/TextArea";
 import moment from "moment/moment";

@@ -35,10 +35,10 @@ class AuthService {
         return null;
     }
 
-    getCountryList() {
+    /*getCountryList() {
         // return axios.get(`https://trial.mobiscroll.com/content/countries.json`);
         return axios.get(`https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=country`);
-    }
+    }*/
 
 }
 

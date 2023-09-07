@@ -4,47 +4,40 @@ import {
     Row,
     Col,
     Card,
-    Button,
-    List,
     Descriptions,
     Avatar,
-    Radio,
-    Switch,
-    Upload,
-    message, Spin,
+    message,
+    Spin,
 } from "antd";
 
 import {
     FacebookOutlined,
     TwitterOutlined,
     InstagramOutlined,
-    VerticalAlignTopOutlined,
 } from "@ant-design/icons";
 
 import BgProfile from "../../assets/images/bg-profile.jpg";
-import profilavatar from "../../assets/images/face-1.jpg";
-import convesionImg from "../../assets/images/face-3.jpg";
-import convesionImg2 from "../../assets/images/face-4.jpg";
-import convesionImg3 from "../../assets/images/face-5.jpeg";
-import convesionImg4 from "../../assets/images/face-6.jpeg";
-import convesionImg5 from "../../assets/images/face-2.jpg";
-import project1 from "../../assets/images/home-decor-1.jpeg";
-import project2 from "../../assets/images/home-decor-2.jpeg";
-import project3 from "../../assets/images/home-decor-3.jpeg";
-import appointmentService from "../../service/AppointmentService";
+// import convesionImg from "../../assets/images/face-3.jpg";
+// import convesionImg2 from "../../assets/images/face-4.jpg";
+// import convesionImg3 from "../../assets/images/face-5.jpeg";
+// import convesionImg4 from "../../assets/images/face-6.jpeg";
+// import convesionImg5 from "../../assets/images/face-2.jpg";
+// import project1 from "../../assets/images/home-decor-1.jpeg";
+// import project2 from "../../assets/images/home-decor-2.jpeg";
+// import project3 from "../../assets/images/home-decor-3.jpeg";
 import consultantService from "../../service/ConsultantService";
 
 function Profile() {
-    const [imageURL, setImageURL] = useState(false);
+    // const [imageURL, setImageURL] = useState(false);
     // const [, setLoading] = useState(false);
 
-    const getBase64 = (img, callback) => {
+  /*  const getBase64 = (img, callback) => {
         const reader = new FileReader();
         reader.addEventListener("load", () => callback(reader.result));
         reader.readAsDataURL(img);
-    };
+    };*/
 
-    const beforeUpload = (file) => {
+  /*  const beforeUpload = (file) => {
         const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
         if (!isJpgOrPng) {
             message.error("You can only upload JPG/PNG file!");
@@ -67,9 +60,9 @@ function Profile() {
                 setImageURL(false);
             });
         }
-    };
+    };*/
 
-    const pencil = [
+  /*  const pencil = [
         <svg
             width="20"
             height="20"
@@ -146,7 +139,7 @@ function Profile() {
             disciption:
                 "Different people have different taste, and various types of music, Zimbali Resort",
         },
-    ];
+    ];*/
 
 
     const [loading, setLoading] = useState(true);
